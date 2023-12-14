@@ -1,0 +1,23 @@
+.form-card-container {
+  @apply w-1/3 h-[32rem] p-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700
+}
+
+.form-first-row {
+  @apply grid items-start gap-6 mb-3 grid-cols-2
+}
+
+.label-typography {
+  @apply block mb-2 text-sm font-medium text-gray-600 dark:text-white
+}
+
+.error-message {
+  @apply text-xs text-red-600 dark:text-green-400
+}
+
+.form-input {
+  @apply bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+}
+
+.submit-btn {
+  @apply text-white bg-gradient-to-r from-slate-800 via-slate-900 to-slate-950 hover:shadow-lg hover:shadow-slate-400 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-slate-400 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-[15rem] !important
+}

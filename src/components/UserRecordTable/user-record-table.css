@@ -1,0 +1,15 @@
+.table-contianer {
+  @apply w-full border-collapse mt-5
+}
+
+th {
+  @apply bg-[#f2f2f2] p-3 text-left
+}
+
+td {
+  @apply border border-solid border-[#dddddd] p-3 text-left
+}
+
+.action-btn {
+  @apply bg-[#4CAF50] text-white px-3 py-2 rounded cursor-pointer mr-1
+}
