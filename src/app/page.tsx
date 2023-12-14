@@ -24,8 +24,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <p className="font-bold text-3xl mb-5">User Record Form</p>
+    <main className="flex min-h-screen flex-col items-center gap-10 p-24">
+      <p className="font-bold text-3xl mb-3.5">User Record Form</p>
       <UserForm addUser={addUser} key={Math.random()}/>
       <UserRecordTable
         users={users}

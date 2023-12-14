@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+// Components
+import InputField from "./InputField";
 // Types
 import { IUserFormProps, IUserRecordForm } from "@/types/userForm";
 // Hooks
@@ -27,136 +29,70 @@ const UserForm = ({ addUser }: UserFormProps) => {
     onSubmitHandler,
     onErrorValidation,
   } = useFormValidation(initialState, addUser);
+
+  const genderOptions = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+  ];
+
   return (
     <div className="form-card-container">
-      <form onSubmit={(e) => onSubmitHandler(e)}>
+      <form onSubmit={onSubmitHandler}>
         <div className="form-first-row">
-          <div>
-            <div>
-              <label htmlFor="name" className="label-typography">
-                Name:<span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                className="form-input"
-                placeholder="Your full name"
-                onChange={(e) => onChangeHanlder(e)}
-                onBlur={(e) => onErrorValidation(e)}
-              />
-            </div>
-            <div className="h-4 mt-1">
-              {errors?.name ? (
-                <p id="outlined_success_help" className="error-message">
-                  {errors?.name}
-                </p>
-              ) : (
-                false
-              )}
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor="dob">
-                Date of Birth:<span className="text-red-700">*</span>
-              </label>
-              <input
-                type="date"
-                name="dob"
-                className="form-input"
-                onChange={(e) => onChangeHanlder(e)}
-                onBlur={(e) => onErrorValidation(e)}
-              />
-            </div>
-            <div className="h-4 mt-1">
-              {errors?.dob ? (
-                <p id="outlined_success_help" className="error-message">
-                  {errors?.dob}
-                </p>
-              ) : (
-                false
-              )}
-            </div>
-          </div>
+          <InputField
+            label="Name"
+            name="name"
+            type="text"
+            placeholder="Your Full Name"
+            onChange={onChangeHanlder}
+            onBlur={onErrorValidation}
+            error={errors?.name}
+          />
+          <InputField
+            label="Date of Birth"
+            name="dob"
+            type="date"
+            onChange={onChangeHanlder}
+            onBlur={onErrorValidation}
+            error={errors?.dob}
+          />
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="label-typography">
-            Email address<span className="text-red-700">*</span>
-          </label>
-          <input
-            type="text"
+          <InputField
+            label="Email Address"
             name="email"
-            className="form-input"
-            placeholder="Your email address"
-            onChange={(e) => onChangeHanlder(e)}
-            onBlur={(e) => onErrorValidation(e)}
+            type="text"
+            placeholder="Your Email Address"
+            onChange={onChangeHanlder}
+            onBlur={onErrorValidation}
+            error={errors?.email}
           />
-          <div className="h-4 mt-1">
-            {errors?.email ? (
-              <p id="outlined_success_help" className="error-message">
-                {errors?.email}
-              </p>
-            ) : (
-              false
-            )}
-          </div>
         </div>
-
         <div className="form-first-row">
+          <InputField
+            label="Salary"
+            name="salary"
+            type="number"
+            placeholder="Your Current CTC"
+            onChange={onChangeHanlder}
+            onBlur={onErrorValidation}
+            error={errors?.salary}
+          />
           <div>
-            <div>
-              <label htmlFor="name" className="label-typography">
-                Salary:<span className="text-red-700">*</span>
-              </label>
-              <input
-                type="number"
-                name="salary"
-                className="form-input"
-                placeholder="Current CTC"
-                onChange={(e) => onChangeHanlder(e)}
-                onBlur={(e) => onErrorValidation(e)}
-              />
-            </div>
-            <div className="h-4 mt-1">
-              {errors?.salary ? (
-                <p id="outlined_success_help" className="error-message">
-                  {errors?.salary}
-                </p>
-              ) : (
-                false
-              )}
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor="gender">
-                Gender:<span className="text-red-700">*</span>
-              </label>
-              <select
-                name="gender"
-                className="form-input"
-                onChange={(e) => onChangeHanlder(e)}
-                onBlur={(e) => onErrorValidation(e)}
-              >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-            <div className="h-4 mt-1">
-              {errors?.gender ? (
-                <p id="outlined_success_help" className="error-message">
-                  {errors?.gender}
-                </p>
-              ) : (
-                false
-              )}
-            </div>
+            <InputField
+              label="Gender"
+              name="gender"
+              type="radio"
+              options={genderOptions}
+              onChange={onChangeHanlder}
+              onBlur={onErrorValidation}
+              error={errors?.gender}
+            />
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-8">
           <button type="submit" className="submit-btn" disabled={isSubmitting}>
-            {isSubmitting ? `Submitting....` : `Submit feedback`}
+            {isSubmitting ? `Submitting....` : `Save Record`}
           </button>
         </div>
       </form>
