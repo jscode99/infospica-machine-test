@@ -13,3 +13,11 @@ td {
 .action-btn {
   @apply bg-[#4CAF50] text-white px-3 py-2 rounded cursor-pointer mr-1
 }
+
+.no-data-container {
+  @apply flex justify-center p-5 border text-neutral-500
+}
+
+.btn-group {
+  @apply flex justify-center gap-5
+}

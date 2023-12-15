@@ -59,7 +59,7 @@ const UserRecordTable = ({
   };
 
   return (
-    <div>
+    <div className="w-full">
       <table className="table-contianer">
         <thead>
           <tr>
@@ -72,7 +72,7 @@ const UserRecordTable = ({
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
@@ -135,19 +135,23 @@ const UserRecordTable = ({
               </td>
               <td>
                 {editableUser === user.id ? (
-                  <>
+                  <div className="btn-group">
                     <button
                       className="action-btn"
                       onClick={() => handleSave(newUser)}
                     >
                       Save
                     </button>
-                    <button className="action-btn" onClick={handleCancel}>
+                    <button
+                      className="action-btn"
+                      onClick={handleCancel}
+                      style={{ backgroundColor: "red" }}
+                    >
                       Cancel
                     </button>
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className="btn-group">
                     <button
                       className="action-btn"
                       onClick={() => handleEdit(user)}
@@ -157,16 +161,22 @@ const UserRecordTable = ({
                     <button
                       className="action-btn"
                       onClick={() => deleteUser(user.id)}
+                      style={{ backgroundColor: "red" }}
                     >
                       Delete
                     </button>
-                  </>
+                  </div>
                 )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {users.length === 0 ? (
+        <div className="no-data-container">No Data Available.</div>
+      ) : (
+        false
+      )}
     </div>
   );
 };
