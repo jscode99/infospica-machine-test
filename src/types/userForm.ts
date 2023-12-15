@@ -56,3 +56,14 @@ export type IFormValidation = {
     >,
   ) => void;
 };
+
+// User Record Table
+
+export type ITableDataProps = {
+  editableUser: number | null;
+  id: number | undefined;
+  newValue: string | undefined;
+  currentValue: string;
+  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => void;
+  propertyName: string;
+};

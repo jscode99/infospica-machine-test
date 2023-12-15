@@ -2,13 +2,15 @@
 import React, { useState } from "react";
 // Types
 import { IUserRecordForm } from "@/types/userForm";
+// Components
+import TableData from "./TableData";
 // Styles
 import "./user-record-table.css";
 
 const tableData = (
   editableUser: number | null,
   id: number | undefined,
-  newValue: string,
+  newValue: string | undefined,
   currentValue: string,
   setNewUser: React.Dispatch<any>,
   key: string,
@@ -39,7 +41,14 @@ const UserRecordTable = ({
   updateUser: (user: IUserRecordForm) => void;
 }) => {
   const [editableUser, setEditableUser] = useState<null | number>(null);
-  const [newUser, setNewUser] = useState<any>({});
+  const [newUser, setNewUser] = useState<IUserRecordForm | null>(null);
+
+  const handleOnChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key: string,
+  ) => {
+    setNewUser((prev: any) => ({ ...prev, [key]: e.target.value }));
+  };
 
   const handleEdit = (user: IUserRecordForm) => {
     if (user?.id) {
@@ -48,10 +57,12 @@ const UserRecordTable = ({
     }
   };
 
-  const handleSave = (user: IUserRecordForm) => {
-    setEditableUser(null);
-    updateUser(user);
-    setNewUser({});
+  const handleSave = (user: IUserRecordForm | null) => {
+    if (user) {
+      setEditableUser(null);
+      updateUser(user);
+      setNewUser(null);
+    }
   };
 
   const handleCancel = () => {
@@ -77,61 +88,54 @@ const UserRecordTable = ({
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>
-                {tableData(
-                  editableUser,
-                  user.id,
-                  newUser.name,
-                  user.name,
-                  setNewUser,
-                  "name",
-                  newUser,
-                )}
+                <TableData
+                  id={user.id}
+                  propertyName={"name"}
+                  newValue={newUser?.name}
+                  currentValue={user.name}
+                  editableUser={editableUser}
+                  handleOnChange={handleOnChange}
+                />
               </td>
               <td>
-                {tableData(
-                  editableUser,
-                  user.id,
-                  newUser.dob,
-                  user.dob,
-                  setNewUser,
-                  "dob",
-                  newUser,
-                )}
+                <TableData
+                  id={user.id}
+                  propertyName={"dob"}
+                  newValue={newUser?.dob}
+                  currentValue={user.dob}
+                  editableUser={editableUser}
+                  handleOnChange={handleOnChange}
+                />
               </td>
               <td>
-                {tableData(
-                  editableUser,
-                  user.id,
-                  newUser.email,
-                  user.email,
-                  setNewUser,
-                  "email",
-                  newUser,
-                )}
+                <TableData
+                  id={user.id}
+                  propertyName={"email"}
+                  newValue={newUser?.email}
+                  currentValue={user.email}
+                  editableUser={editableUser}
+                  handleOnChange={handleOnChange}
+                />
               </td>
               <td>
-                {editableUser === user.id ? (
-                  <input
-                    type="number"
-                    value={newUser.salary || user.salary}
-                    onChange={(e) =>
-                      setNewUser({ ...newUser, salary: e.target.value })
-                    }
-                  />
-                ) : (
-                  user.salary
-                )}
+                <TableData
+                  id={user.id}
+                  propertyName={"salary"}
+                  newValue={newUser?.salary}
+                  currentValue={user.salary}
+                  editableUser={editableUser}
+                  handleOnChange={handleOnChange}
+                />
               </td>
               <td>
-                {tableData(
-                  editableUser,
-                  user.id,
-                  newUser.gender,
-                  user.gender,
-                  setNewUser,
-                  "gender",
-                  newUser,
-                )}
+                <TableData
+                  id={user.id}
+                  propertyName={"gender"}
+                  newValue={newUser?.gender}
+                  currentValue={user.gender}
+                  editableUser={editableUser}
+                  handleOnChange={handleOnChange}
+                />
               </td>
               <td>
                 {editableUser === user.id ? (
