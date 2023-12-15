@@ -7,30 +7,6 @@ import TableData from "./TableData";
 // Styles
 import "./user-record-table.css";
 
-const tableData = (
-  editableUser: number | null,
-  id: number | undefined,
-  newValue: string | undefined,
-  currentValue: string,
-  setNewUser: React.Dispatch<any>,
-  key: string,
-  user: any,
-) => {
-  return (
-    <>
-      {editableUser === id ? (
-        <input
-          type="text"
-          value={newValue || currentValue}
-          onChange={(e) => setNewUser({ ...user, [key]: e.target.value })}
-        />
-      ) : (
-        currentValue
-      )}
-    </>
-  );
-};
-
 const UserRecordTable = ({
   users,
   deleteUser,
